@@ -2,11 +2,10 @@
   "name": "lector-qr-visita",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "node server.js",
+    "start:dev": "ng serve --port 8080",
+    "build": "ng build --configuration production",
+    "postinstall": "npm run build"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +21,8 @@
     "@zxing/ngx-scanner": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "zone.js": "~0.15.0",
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.1.1",
