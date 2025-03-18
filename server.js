@@ -19,7 +19,7 @@ function findDistFolder() {
   for (const distPath of possiblePaths) {
     const fullPath = path.join(__dirname, distPath);
     if (fs.existsSync(fullPath) && fs.existsSync(path.join(fullPath, 'index.html'))) {
-      console.log(`✅ Carpeta de distribución encontrada en: ${distPath}`);
+      // console.log(`✅ Carpeta de distribución encontrada en: ${distPath}`);
       return distPath;
     }
   }
@@ -58,21 +58,21 @@ app.listen(PORT, () => {
   console.log(`🚀 Servidor iniciado en puerto ${PORT}`);
 
   // Mostrar estructura de carpetas para debugging
-  console.log('📁 Estructura de carpetas:');
-  function listDir(dir, level = 0) {
-    const items = fs.readdirSync(dir);
-    for (const item of items) {
-      const itemPath = path.join(dir, item);
-      const stats = fs.statSync(itemPath);
-      console.log(`${'  '.repeat(level)}${stats.isDirectory() ? '📁' : '📄'} ${item}`);
-      if (stats.isDirectory() && level < 2) { // Limitar a 2 niveles de profundidad
-        listDir(itemPath, level + 1);
-      }
-    }
-  }
-  try {
-    listDir(__dirname);
-  } catch (e) {
-    console.error('Error al listar directorios:', e);
-  }
+  // console.log('📁 Estructura de carpetas:');
+  // function listDir(dir, level = 0) {
+  //   const items = fs.readdirSync(dir);
+  //   for (const item of items) {
+  //     const itemPath = path.join(dir, item);
+  //     const stats = fs.statSync(itemPath);
+  //     console.log(`${'  '.repeat(level)}${stats.isDirectory() ? '📁' : '📄'} ${item}`);
+  //     if (stats.isDirectory() && level < 2) { // Limitar a 2 niveles de profundidad
+  //       listDir(itemPath, level + 1);
+  //     }
+  //   }
+  // }
+  // try {
+  //   listDir(__dirname);
+  // } catch (e) {
+  //   console.error('Error al listar directorios:', e);
+  // }
 });

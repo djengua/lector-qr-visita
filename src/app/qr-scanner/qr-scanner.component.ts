@@ -3,7 +3,7 @@ import { CommonModule, DatePipe, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BarcodeFormat } from '@zxing/library';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-qr-scanner',
@@ -29,12 +29,19 @@ export class QrScannerComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    private route: ActivatedRoute
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit(): void {
+    if (this.router.url === '/' || this.router.url === '') {
+      this.router.navigate(['/scanner'], {
+        queryParams: { type: 'entrada' },
+      });
+    }
+
     this.route.queryParams.subscribe((params) => {
       this.scanType = params['type'] || '';
       console.log('Tipo de escaneo:', this.scanType);
