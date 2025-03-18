@@ -2,9 +2,12 @@
   "name": "lector-qr-visita",
   "version": "0.0.0",
   "scripts": {
+    "ng": "ng",
     "start": "node server.js",
     "start:dev": "ng serve --port 8080",
-    "build": "ng build --configuration production",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
     "postinstall": "npm run build"
   },
   "private": true,
