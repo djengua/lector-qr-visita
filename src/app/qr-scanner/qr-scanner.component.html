@@ -1,0 +1,107 @@
+<div class="main-container">
+  <header class="header-container">
+    <h1 class="main-title">Bienvenido a Gobierno de Guanajuato</h1>
+
+    <div class="select-container">
+      <label>Lugar</label>
+      <select class="custom-select" #lugarSelect (change)="onLugarChange($any($event.target).value)">
+        <option value="PRINCIPAL">PRINCIPAL</option>
+        <option value="SALIDA_PRINCIPAL">SALIDA PRINCIPAL</option>
+      </select>
+      <div class="select-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="select-container" *ngIf="availableDevices && availableDevices.length > 1">
+      <label>Cámara</label>
+      <select class="custom-select" #cameraSelect (change)="onDeviceSelectChange($any($event.target).value)">
+        <option *ngFor="let device of availableDevices" [value]="device.deviceId">{{ device.label }}</option>
+      </select>
+      <div class="select-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="instruction-text">
+      <p>Favor de posicionar el código QR en la cámara</p>
+      <small>Centre el código QR recibido en el lector.</small>
+    </div>
+  </header>
+
+  <div class="scanner-wrapper">
+    <div class="scanner-container" *ngIf="scannerEnabled && isBrowser">
+      <div class="scanner-frame">
+        <zxing-scanner
+          [formats]="formatsEnabled"
+          [device]="currentDevice"
+          (camerasFound)="onCamerasFound($event)"
+          (scanSuccess)="onCodeResult($event)"
+          [tryHarder]="true"
+        ></zxing-scanner>
+      </div>
+    </div>
+
+    <div *ngIf="!isBrowser" class="browser-message">
+      El escáner QR está disponible solo en el navegador.
+    </div>
+  </div>
+
+  <div class="actions-container">
+    <button class="action-button" (click)="toggleScanner()">
+      {{ scannerEnabled ? 'Pausar' : 'Activar' }}
+    </button>
+    <button class="action-button secondary" (click)="regresar()">
+      Regresar
+    </button>
+  </div>
+
+  <div class="toast-container" *ngIf="showToast">
+    <div class="toast-message error">
+      <div class="toast-content">
+        <i class="toast-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </i>
+        <span>{{ toastMessage }}</span>
+      </div>
+      <button class="toast-close" (click)="hideToast()">×</button>
+    </div>
+  </div>
+
+  <div class="result-container" *ngIf="qrResultString">
+    <div class="result-card">
+      <h3>Código escaneado:</h3>
+      <p>{{ qrResultString }}</p>
+    </div>
+  </div>
+
+  <div class="history-container" *ngIf="scanHistory.length > 0">
+    <h3>Historial de escaneos</h3>
+    <button class="clear-button" (click)="clearHistory()">Limpiar historial</button>
+    <ul class="history-list">
+      <li class="history-item" *ngFor="let scan of scanHistory">
+        <div class="history-content">
+          <span class="history-code">{{ scan.code }}</span>
+          <small class="history-time">{{ scan.timestamp | date:'medium' }}</small>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <footer class="footer">
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="Logo Guanajuato" class="footer-logo"
+           onerror="this.src='https://www.guanajuato.gob.mx/SEG/images/logo-gto.png'; this.onerror=null;">
+    </div>
+    <p class="copyright">© {{ currentYear }} Control de Accesos.</p>
+    <p class="privacy-link">Ver aviso de privacidad</p>
+  </footer>
+</div>

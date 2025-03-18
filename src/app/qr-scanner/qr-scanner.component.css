@@ -1,0 +1,273 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main-title {
+  font-size: 24px;
+  color: #1a2e58;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.select-container {
+  position: relative;
+  width: 60%;
+  margin: 0 auto 20px;
+}
+
+.select-container label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #666;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #1a2e58;
+  border-radius: 5px;
+  appearance: none;
+  background-color: white;
+  font-size: 16px;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 15px;
+  top: 38px;
+  pointer-events: none;
+  color: #1a2e58;
+}
+
+.instruction-text {
+  margin: 20px 0;
+}
+
+.instruction-text p {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.instruction-text small {
+  color: #666;
+}
+
+.scanner-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.scanner-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.scanner-frame {
+  position: relative;
+  border: 3px solid white;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 0 3px #1a2e58;
+}
+
+zxing-scanner {
+  width: 100%;
+  height: 400px;
+}
+
+.browser-message {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  color: #666;
+}
+
+.actions-container {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.action-button {
+  padding: 10px 20px;
+  background-color: #1a2e58;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.action-button:hover {
+  background-color: #142544;
+}
+
+.action-button.secondary {
+  background-color: #6c757d;
+}
+
+.action-button.secondary:hover {
+  background-color: #5a6268;
+}
+
+.result-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.result-card {
+  background-color: #f8f9fa;
+  border-left: 4px solid #28a745;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.result-card h3 {
+  margin-top: 0;
+  color: #28a745;
+}
+
+.history-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.history-container h3 {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.clear-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-item {
+  border-bottom: 1px solid #e9ecef;
+  padding: 10px 0;
+}
+
+.history-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-time {
+  color: #6c757d;
+}
+
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.toast-message {
+  min-width: 300px;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.toast-message.error {
+  background-color: #fff;
+  border-left: 4px solid #dc3545;
+  color: #dc3545;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+}
+
+.toast-icon {
+  margin-right: 10px;
+  display: flex;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+.toast-close:hover {
+  color: #343a40;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.logo-container {
+  margin-bottom: 15px;
+}
+
+.footer-logo {
+  height: 50px;
+}
+
+.copyright {
+  margin: 5px 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.privacy-link {
+  color: #1a2e58;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+}
